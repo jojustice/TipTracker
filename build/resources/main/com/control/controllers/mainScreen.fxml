@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<!--<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"-->
+<!--            xmlns="http://javafx.com/javafx/22.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.control.controllers.MainController">-->
+<!--   <top>-->
+<!--      <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">-->
+<!--        <buttons>-->
+<!--          <Button fx:id = "logButton" onAction="#onLogButtonClick" mnemonicParsing="false" text="Log" />-->
+<!--           <Button fx:id = "expensesButton" onAction="#onExpenseButtonClick" mnemonicParsing="false" text="Expenses" />-->
+<!--            <Button fx:id = "statsButton" onAction="#onStatsButtonClick"  mnemonicParsing="false" text="Stats" />-->
+<!--        </buttons>-->
+<!--         <BorderPane.margin>-->
+<!--            <Insets />-->
+<!--         </BorderPane.margin>-->
+<!--         <padding>-->
+<!--            <Insets right="10.0" />-->
+<!--         </padding>-->
+<!--      </ButtonBar>-->
+<!--   </top>-->
+<!--   <center>-->
+<!--        <Pane fx:id="placeholder"/>-->
+<!--   </center>-->
+<!--   <bottom>-->
+<!--      <HBox prefHeight="24.0" prefWidth="600.0" BorderPane.alignment="CENTER">-->
+<!--         <children>-->
+<!--            <Label fx:id = "userLabel" text = "User Label" opacity="0.34" HBox.hgrow="NEVER">-->
+<!--               <padding>-->
+<!--                  <Insets left="10.0" />-->
+<!--               </padding>-->
+<!--               <opaqueInsets>-->
+<!--                  <Insets left="9.0" />-->
+<!--               </opaqueInsets>-->
+<!--            </Label>-->
+<!--         </children>-->
+<!--      </HBox>-->
+<!--   </bottom>-->
+<!--</BorderPane>-->
+
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.control.controllers.MainController">
+    <top>
+        <BorderPane prefHeight="40.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+            <!-- Settings Dropdown on the Left -->
+            <left>
+                <MenuButton prefHeight="40.0" style="-fx-background-color: transparent;" text="" BorderPane.alignment="CENTER_LEFT">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
+                            <image>
+                                <Image url="@images/settings.png" />
+<!-- <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icons created by Infinite Dendrogram - Flaticon</a> -->
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem text="Log Out" onAction="#onLogOutClick"/>
+                        <MenuItem text="Quit" onAction="#onQuitClick"/>
+                    </items>
+                </MenuButton>
+            </left>
+
+            <!-- Buttons on the Right -->
+            <right>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <Button fx:id="logButton" mnemonicParsing="false" onAction="#onLogButtonClick" text="Log" />
+                    <Button fx:id="expensesButton" mnemonicParsing="false" onAction="#onExpenseButtonClick" text="Expenses" />
+                    <Button fx:id="statsButton" mnemonicParsing="false" onAction="#onStatsButtonClick" text="Stats" />
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+                </HBox>
+            </right>
+        </BorderPane>
+    </top>
+    <center>
+        <Pane fx:id="placeholder" />
+    </center>
+    <bottom>
+        <HBox prefHeight="24.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="userLabel" opacity="0.34" text="User Label" HBox.hgrow="NEVER">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <opaqueInsets>
+                        <Insets left="9.0" />
+                    </opaqueInsets>
+                </Label>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
