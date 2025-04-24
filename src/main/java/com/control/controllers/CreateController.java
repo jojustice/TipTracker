@@ -66,7 +66,7 @@ public class CreateController {
 
                     Connection connection = Database.newConnection();
                     PreparedStatement stmt = connection.prepareStatement("INSERT INTO " +
-                            "user(username, password, fName, lName, salt) VALUES (?, ?, ?, ?, ?)");
+                            "User(username, password, fName, lName, salt) VALUES (?, ?, ?, ?, ?)");
 
                     stmt.setString(1, usernameValue);
                     stmt.setString(2, hash);
@@ -114,7 +114,7 @@ public class CreateController {
     private int getUserId(String userName) throws SQLException { //returns 0 if user does not exist
         int userId = -1;
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT userId FROM user WHERE username = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT userId FROM User WHERE username = ?");
         stmt.setString(1, userName);
         ResultSet rs = stmt.executeQuery();
         if(rs.next()){

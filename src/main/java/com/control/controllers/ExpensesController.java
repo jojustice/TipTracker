@@ -51,7 +51,7 @@ public class ExpensesController {
         if(!label.isEmpty() && !amount.isEmpty()){ //both fields not empty
             if(expenseChoiceString.equals("New Expense")) { //new expense
                 Connection connection = Database.newConnection();
-                PreparedStatement stmt = connection.prepareStatement("INSERT INTO expense (user, label, amount) " +
+                PreparedStatement stmt = connection.prepareStatement("INSERT INTO Expense (user, label, amount) " +
                         "VALUES (?, ?, ?)");
 
                 stmt.setInt(1, userId);
@@ -66,7 +66,7 @@ public class ExpensesController {
             } else { //editing an existing expense
                 int expId = getExpenseId(expenseChoiceString);
                 Connection connection = Database.newConnection();
-                PreparedStatement stmt = connection.prepareStatement("UPDATE expense SET label = ?, amount = ? WHERE label = ? AND expenseId = ?");
+                PreparedStatement stmt = connection.prepareStatement("UPDATE Expense SET label = ?, amount = ? WHERE label = ? AND expenseId = ?");
 
                 stmt.setString(1, label);
                 stmt.setInt(2, Integer.parseInt(amount));
@@ -95,7 +95,7 @@ public class ExpensesController {
         if(!selectedExpense.equals("New Expense")){
             int expenseId = getExpenseId(selectedExpense);
             Connection connection = Database.newConnection();
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM expense WHERE expenseId = ?");
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM Expense WHERE expenseId = ?");
             stmt.setInt(1, expenseId);
             stmt.executeUpdate();
             expenseChoice.setValue("New Expense");
@@ -109,7 +109,7 @@ public class ExpensesController {
         expenses.add("New Expense");
 
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT label FROM expense WHERE user = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT label FROM Expense WHERE user = ?");
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
@@ -144,7 +144,7 @@ public class ExpensesController {
             String selectedExpense = expenseChoice.getValue();
             if (!selectedExpense.equals("New Expense")) {
                 Connection connection = Database.newConnection();
-                PreparedStatement stmt = connection.prepareStatement("SELECT label, amount FROM expense WHERE label = ? AND user = ?");
+                PreparedStatement stmt = connection.prepareStatement("SELECT label, amount FROM Expense WHERE label = ? AND user = ?");
 
                 stmt.setString(1, selectedExpense);
                 stmt.setInt(2, userId);
@@ -165,7 +165,7 @@ public class ExpensesController {
     }
     private int getExpenseId(String expenseName) throws SQLException { //checks user id, do not need to check in update of expense
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT expenseId FROM expense WHERE label = ? AND user = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT expenseId FROM Expense WHERE label = ? AND user = ?");
 
         stmt.setString(1, expenseName);
         stmt.setInt(2, userId);

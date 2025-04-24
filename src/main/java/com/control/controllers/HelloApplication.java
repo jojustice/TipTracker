@@ -7,10 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
+import java.util.Properties;
 
 public class HelloApplication extends Application {
-    private static final String CONFIG_FILE_PATH = "config.properties";
+    static InputStream inputStream = HelloApplication.class.getClassLoader().getResourceAsStream("config.properties");
+    static Properties properties = new Properties();
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -24,9 +28,10 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        properties.load(inputStream);
         try {
-            Database.initialize(CONFIG_FILE_PATH);
+            Database.initialize(properties);
         } catch (Exception e) {
             throw new RuntimeException("Unable to initialize database", e);
         }

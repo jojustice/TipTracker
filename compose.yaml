@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  tiptracker-app:
+    image: jojustice/tiptracker-app
+    container_name: tiptracker-app
+    environment:
+      - DISPLAY=host.docker.internal:0
+    platform: linux/amd64
+    networks:
+      - tiptracker-net
+    depends_on:
+      - tiptracker-db
+  
+  tiptracker-db:
+    image: jojustice/tiptracker-db
+    container_name: tiptracker-db
+    platform: linux/amd64
+    volumes: 
+      - tiptracker-data:/var/lib/mysql
+    networks:
+      - tiptracker-net
+
+networks:
+  tiptracker-net:
+    driver: bridge
+
+volumes:
+  tiptracker-data:

@@ -79,7 +79,7 @@ public class LogController {
                 int outlier = outlierBox.isSelected() ? 1 : 0;
 
                 Connection connection = Database.newConnection();
-                PreparedStatement stmt = connection.prepareStatement("INSERT INTO log (jobId, date, hours, amount, outlier) VALUES (?, ?, ?, ?, ?)");
+                PreparedStatement stmt = connection.prepareStatement("INSERT INTO Log (jobId, date, hours, amount, outlier) VALUES (?, ?, ?, ?, ?)");
 
                 stmt.setInt(1, jobId);
                 stmt.setDate(2, sqlDate);
@@ -106,7 +106,7 @@ public class LogController {
             if(!jobList.contains(newJobNameInput)) {
                 Date sqlDate = Date.valueOf(newJobStartDate.getValue());
                 Connection connection = Database.newConnection();
-                PreparedStatement stmt = connection.prepareStatement("INSERT INTO job (userId, jobName, startDate) VALUES (?, ?, ?)");
+                PreparedStatement stmt = connection.prepareStatement("INSERT INTO Job (userId, jobName, startDate) VALUES (?, ?, ?)");
 
                 stmt.setInt(1, userId);
                 stmt.setString(2, newJobNameInput);
@@ -127,7 +127,7 @@ public class LogController {
 
     private void loadJobList () throws SQLException {
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT jobName FROM job WHERE userId = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT jobName FROM Job WHERE userId = ?");
 
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -155,7 +155,7 @@ public class LogController {
 
     private int getJobId(String jobName) throws SQLException {
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT jobId FROM job WHERE jobName = ? AND userId = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT jobId FROM Job WHERE jobName = ? AND userId = ?");
 
         stmt.setString(1, jobName);
         stmt.setInt(2, userId);

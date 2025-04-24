@@ -58,7 +58,7 @@ public class LogInController {
 
                 Connection connection = Database.newConnection();
                 PreparedStatement stmt = connection.prepareStatement("SELECT userId, username, fName, lName " +
-                            "FROM user WHERE username = ? AND password = ?");
+                            "FROM User WHERE username = ? AND password = ?");
 
                 stmt.setString(1, usernameValue);
                 stmt.setString(2, hash);
@@ -126,7 +126,7 @@ public class LogInController {
 
     private String getUserSalt(String username) throws SQLException {
         Connection connection = Database.newConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT salt FROM user WHERE username = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT salt FROM User WHERE username = ?");
 
         stmt.setString(1, username);
         ResultSet rs = stmt.executeQuery();
